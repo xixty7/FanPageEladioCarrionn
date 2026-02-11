@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eladio Carrión | Sauce Boyz Fanpage</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Montserrat:wght@800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --primary-color: #e0fb2c;
+            /* Toxic Green */
+            --text-color: #ffffff;
+            --secondary-text: #b3b3b3;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(to bottom, transparent, var(--bg-color)),
+                url('https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=2070') center/cover;
+            padding: 0 5%;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            -webkit-text-stroke: 2px var(--primary-color);
+            color: transparent;
+        }
+
+        .hero h1 span {
+            color: var(--text-color);
+            -webkit-text-stroke: 0;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--secondary-text);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-btn {
+            background-color: var(--primary-color);
+            color: #000;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(224, 251, 44, 0.4);
+        }
+
+        /* Sections General */
+        section {
+            padding: 8rem 5%;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-color), transparent);
+        }
+
+        /* Bio Section */
+        .bio-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .bio-text p {
+            color: var(--secondary-text);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .bio-image {
+            width: 100%;
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=2070') center/cover;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .bio-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        /* Albums Section */
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .album-card {
+            background: var(--glass);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s;
+        }
+
+        .album-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .album-img {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            background-color: #222;
+        }
+
+        .album-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .album-card p {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        /* Videos Section */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 */
+            height: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Photos Section */
+        .photos-grid {
+            column-count: 3;
+            column-gap: 1.5rem;
+        }
+
+        .photo-item {
+            margin-bottom: 1.5rem;
+            break-inside: avoid;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .photo-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Stats Section */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: var(--primary-color);
+            color: #000;
+            padding: 4rem 5%;
+            margin: 4rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 3rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .stat-item p {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .bio-container {
+                grid-template-columns: 1fr;
+            }
+
+            .photos-grid {
+                column-count: 2;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .photos-grid {
+                column-count: 1;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">ELADIO CARRIÓN</div>
+        <div class="nav-links">
+            <a href="#bio">BIOGRAFÍA</a>
+            <a href="#albums">ÁLBUMES</a>
+            <a href="#videos">VIDEOS</a>
+            <a href="#fotos">FOTOS</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>SAUCE<span>BOYZ</span></h1>
+            <p>El rey del trap latino y el flow imparable. Directo desde Puerto Rico para el mundo entero.</p>
+            <a href="#videos" class="cta-btn">Ver lo último</a>
+        </div>
+    </section>
+
+    <section id="bio">
+        <h2 class="section-title">LA LEYENDA</h2>
+        <div class="bio-container">
+            <div class="bio-text">
+                <p>Eladio Carrión es un rapero y cantautor estadounidense-puertorriqueño de trap latino y reggaetón. Se
+                    ha consolidado como una de las figuras más influyentes del género urbano, destacando por su
+                    habilidad lírica y su versatilidad para fluir en cualquier ritmo.</p>
+                <p>Comenzó su carrera como influencer, pero su pasión por la música lo llevó a colaborar con los
+                    artistas más grandes de la industria, desde Bad Bunny hasta 50 Cent.</p>
+                <p>Su lema "S-A-U-C-E" no es solo una palabra, es un estilo de vida que define a toda una generación de
+                    fanáticos del trap.</p>
+            </div>
+            <div class="bio-image"></div>
+        </div>
+    </section>
+
+    <div class="stats">
+        <div class="stat-item">
+            <h2>30M+</h2>
+            <p>Oyentes mensuales</p>
+        </div>
+        <div class="stat-item">
+            <h2>1</h2>
+            <p>Latin Grammy</p>
+        </div>
+        <div class="stat-item">
+            <h2>Billboard</h2>
+            <p>Top Charts</p>
+        </div>
+    </div>
+
+    <section id="albums">
+        <h2 class="section-title">DISCOGRAFÍA</h2>
+        <div class="albums-grid">
+            <div class="album-card">
+                <img src="https://m.media-amazon.com/images/I/71b2WkYcSlL._UF1000,1000_QL80_.jpg" alt="Sol María"
+                    class="album-img">
+                <h3>Sol María</h3>
+                <p>2024 • ALBUM</p>
+            </div>
+            <div class="album-card">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/4b/5c/58/4b5c5897-4f65-8b35-0f0e-4d0f7d4b4a6d/196589926829.jpg/1200x1200bb.jpg"
+                    alt="3men2 kbrn" class="album-img">
+                <h3>3men2 kbrn</h3>
+                <p>2023 • ALBUM</p>
+            </div>
+            <div class="album-card">
+                <img src="https://m.media-amazon.com/images/I/81xUe5D3uKL._UF1000,1000_QL80_.jpg" alt="Sauce Boyz 2"
+                    class="album-img">
+                <h3>Sauce Boyz 2</h3>
+                <p>2021 • ALBUM</p>
+            </div>
+            <div class="album-card">
+                <img src="https://i.scdn.co/image/ab67616d0000b273760447ec6c802421379b3921" alt="Monarca"
+                    class="album-img">
+                <h3>Monarca</h3>
+                <p>2021 • ALBUM</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="videos">
+        <h2 class="section-title">TOP VIDEO HITS</h2>
+        <div class="videos-grid">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/S2pEAs351M4" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/9G0R0kXf91k" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/I7it2GvS8Q4" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/_G36q-0oEqY" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="fotos">
+        <h2 class="section-title">GALLERY</h2>
+        <div class="photos-grid">
+            <div class="photo-item"><img
+                    src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=1000"
+                    alt="Concert"></div>
+            <div class="photo-item"><img
+                    src="https://images.unsplash.com/photo-1514525253344-f814d074e015?auto=format&fit=crop&q=80&w=1000"
+                    alt="Stage"></div>
+            <div class="photo-item"><img
+                    src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&q=80&w=1000"
+                    alt="Crowd"></div>
+            <div class="photo-item"><img
+                    src="https://images.unsplash.com/photo-1459749411177-042180ce673c?auto=format&fit=crop&q=80&w=1000"
+                    alt="Music"></div>
+            <div class="photo-item"><img
+                    src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=1000"
+                    alt="Mic"></div>
+            <div class="photo-item"><img
+                    src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=1000"
+                    alt="Style"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#">IG</a>
+            <a href="#">TW</a>
+            <a href="#">YT</a>
+            <a href="#">SF</a>
+        </div>
+        <p>&copy; CREATE BY JHON JAIRO PARRA 2026. Sauce Boyz Entertainment. Fanmade with &hearts;</p>
+    </footer>
+
+</body>
+
+</html>
